@@ -1,118 +1,93 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자기소개서 | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 나의 학습 노트</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="navbar">
-            <div class="nav-logo">Portfolio</div>
-            <ul class="nav-links">
-                <li v-for="link in navLinks" :key="link.id">
-                    <a :href="'#' + link.id" @click.prevent="scrollTo(link.id)">{{ link.label }}</a>
-                </li>
-            </ul>
-        </nav>
+  <div class="container">
+    <header>
+      <h1>📚 나의 학습 노트</h1>
+      <p class="subtitle">매일 조금씩, 꾸준히 성장하기</p>
+      <div class="date-display" id="currentDate"></div>
+    </header>
 
-        <!-- Hero Section -->
-        <header class="hero">
-            <div class="hero-content">
-                <p class="hero-greeting">안녕하세요, 저는</p>
-                <h1 class="hero-name">{{ displayedName }}</h1>
-                <p class="hero-title">{{ profile.title }}</p>
-                <div class="hero-decoration"></div>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scroll</span>
-                <div class="scroll-line"></div>
-            </div>
-        </header>
+    <main>
+      <section class="study-section">
+        <h2>🎯 학습 목록</h2>
+        <table class="study-table">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>주제</th>
+              <th>설명</th>
+              <th>상태</th>
+              <th>링크</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>HTML 기초</td>
+              <td>웹페이지의 기본 구조 배우기</td>
+              <td><span class="status completed">완료</span></td>
+              <td><a href="01_intro.html" class="link-btn">바로가기</a></td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>CSS 스타일링</td>
+              <td>웹페이지 꾸미기</td>
+              <td><span class="status in-progress">진행중</span></td>
+              <td><a href="#" class="link-btn">바로가기</a></td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>JavaScript 기초</td>
+              <td>동적인 웹페이지 만들기</td>
+              <td><span class="status not-started">예정</span></td>
+              <td><a href="#" class="link-btn disabled">준비중</a></td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td>반응형 웹</td>
+              <td>모바일에서도 예쁜 웹페이지</td>
+              <td><span class="status not-started">예정</span></td>
+              <td><a href="#" class="link-btn disabled">준비중</a></td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td>Git & GitHub</td>
+              <td>버전 관리와 협업</td>
+              <td><span class="status not-started">예정</span></td>
+              <td><a href="#" class="link-btn disabled">준비중</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-        <!-- Main Content -->
-        <main>
-            <!-- About Section -->
-            <section id="about" class="section about">
-                <section-header number="01" title="About Me" :visible="visibleSections.about"></section-header>
-                <div class="about-content">
-                    <div class="about-image">
-                        <div class="image-frame"></div>
-                    </div>
-                    <div class="about-text" :class="{ visible: visibleSections.about }">
-                        <p class="about-intro">{{ profile.intro }}</p>
-                        <p>{{ profile.description }}</p>
-                        <div class="about-highlights">
-                            <div class="highlight" v-for="stat in profile.stats" :key="stat.label">
-                                <span class="highlight-number">{{ stat.value }}</span>
-                                <span class="highlight-label">{{ stat.label }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <section class="progress-section">
+        <h2>📊 학습 진행률</h2>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-text" id="progressText">0% 완료</p>
+      </section>
 
-            <!-- Skills Section -->
-            <section id="skills" class="section skills">
-                <section-header number="02" title="Skills" :visible="visibleSections.skills"></section-header>
-                <div class="skills-grid">
-                    <skill-card 
-                        v-for="(skill, index) in skills" 
-                        :key="skill.name"
-                        :skill="skill"
-                        :index="index"
-                        :visible="visibleSections.skills"
-                    ></skill-card>
-                </div>
-            </section>
+      <section class="quote-section">
+        <h2>💬 오늘의 명언</h2>
+        <blockquote id="dailyQuote">
+          "천 리 길도 한 걸음부터"
+        </blockquote>
+      </section>
+    </main>
 
-            <!-- Experience Section -->
-            <section id="experience" class="section experience">
-                <section-header number="03" title="Experience" :visible="visibleSections.experience"></section-header>
-                <div class="timeline">
-                    <timeline-item 
-                        v-for="(item, index) in experiences" 
-                        :key="item.date"
-                        :item="item"
-                        :index="index"
-                        :visible="visibleSections.experience"
-                    ></timeline-item>
-                </div>
-            </section>
+    <footer>
+      <p>🌱 오늘도 한 걸음 성장했습니다!</p>
+    </footer>
+  </div>
 
-            <!-- Contact Section -->
-            <section id="contact" class="section contact">
-                <section-header number="04" title="Contact" :visible="visibleSections.contact"></section-header>
-                <div class="contact-content">
-                    <p class="contact-intro">함께 일하고 싶으시다면 연락주세요!</p>
-                    <div class="contact-links">
-                        <a 
-                            v-for="(contact, index) in contacts" 
-                            :key="contact.label"
-                            :href="contact.url" 
-                            class="contact-item"
-                            :class="{ visible: visibleSections.contact }"
-                            :style="{ transitionDelay: index * 0.15 + 's' }"
-                        >
-                            <span class="contact-label">{{ contact.label }}</span>
-                            <span class="contact-value">{{ contact.value }}</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2025 {{ profile.name }}. All rights reserved.</p>
-        </footer>
-    </div>
-
-    <script src="app.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
