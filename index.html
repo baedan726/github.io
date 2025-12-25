@@ -1,11 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>나의 첫 웹페이지</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개서 | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-  <h1>안녕하세요!홍길동입니다.</h1>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-logo">Portfolio</div>
+            <ul class="nav-links">
+                <li v-for="link in navLinks" :key="link.id">
+                    <a :href="'#' + link.id" @click.prevent="scrollTo(link.id)">{{ link.label }}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <p class="hero-greeting">안녕하세요, 저는</p>
+                <h1 class="hero-name">{{ displayedName }}</h1>
+                <p class="hero-title">{{ profile.title }}</p>
+                <div class="hero-decoration"></div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- About Section -->
+            <section id="about" class="section about">
+                <section-header number="01" title="About Me" :visible="visibleSections.about"></section-header>
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="image-frame"></div>
+                    </div>
+                    <div class="about-text" :class="{ visible: visibleSections.about }">
+                        <p class="about-intro">{{ profile.intro }}</p>
+                        <p>{{ profile.description }}</p>
+                        <div class="about-highlights">
+                            <div class="highlight" v-for="stat in profile.stats" :key="stat.label">
+                                <span class="highlight-number">{{ stat.value }}</span>
+                                <span class="highlight-label">{{ stat.label }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section skills">
+                <section-header number="02" title="Skills" :visible="visibleSections.skills"></section-header>
+                <div class="skills-grid">
+                    <skill-card 
+                        v-for="(skill, index) in skills" 
+                        :key="skill.name"
+                        :skill="skill"
+                        :index="index"
+                        :visible="visibleSections.skills"
+                    ></skill-card>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section experience">
+                <section-header number="03" title="Experience" :visible="visibleSections.experience"></section-header>
+                <div class="timeline">
+                    <timeline-item 
+                        v-for="(item, index) in experiences" 
+                        :key="item.date"
+                        :item="item"
+                        :index="index"
+                        :visible="visibleSections.experience"
+                    ></timeline-item>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact">
+                <section-header number="04" title="Contact" :visible="visibleSections.contact"></section-header>
+                <div class="contact-content">
+                    <p class="contact-intro">함께 일하고 싶으시다면 연락주세요!</p>
+                    <div class="contact-links">
+                        <a 
+                            v-for="(contact, index) in contacts" 
+                            :key="contact.label"
+                            :href="contact.url" 
+                            class="contact-item"
+                            :class="{ visible: visibleSections.contact }"
+                            :style="{ transitionDelay: index * 0.15 + 's' }"
+                        >
+                            <span class="contact-label">{{ contact.label }}</span>
+                            <span class="contact-value">{{ contact.value }}</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 {{ profile.name }}. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
