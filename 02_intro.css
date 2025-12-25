@@ -1,0 +1,320 @@
+/* ====================
+   02_intro 인트로 페이지 스타일
+   ==================== */
+
+/* 기본 리셋 및 변수 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #f59e0b;
+  --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a5f 100%);
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* 뒤로가기 버튼 */
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.back-btn:hover {
+  background: rgba(99, 102, 241, 0.5);
+  transform: translateX(-5px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover svg {
+  transform: translateX(-3px);
+}
+
+/* 컨테이너 */
+.intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+}
+
+/* 프로필 카드 */
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 50px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.profile-title {
+  color: var(--secondary);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.profile-bio {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+/* 기술 스택 */
+.skills-section {
+  margin-top: 40px;
+}
+
+.skills-title {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.skill-tag {
+  padding: 10px 20px;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  background: rgba(99, 102, 241, 0.4);
+  transform: translateY(-3px);
+}
+
+.skill-tag.learning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* 연락처 */
+.contact-section {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+.contact-title {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.contact-link {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-link:hover {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+/* 목표 섹션 */
+.goals-section {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px;
+  margin-top: 30px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.goals-title {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.goal-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+}
+
+.goal-item:last-child {
+  margin-bottom: 0;
+}
+
+.goal-icon {
+  font-size: 1.5rem;
+}
+
+.goal-text {
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+/* 푸터 */
+.intro-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.visit-count {
+  margin-top: 10px;
+  color: var(--secondary);
+  font-size: 0.85rem;
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .intro-container {
+    padding: 100px 15px 30px;
+  }
+
+  .profile-card {
+    padding: 30px 20px;
+  }
+
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
+
+  .profile-name {
+    font-size: 1.8rem;
+  }
+
+  .back-btn {
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+
+  .goals-section {
+    padding: 25px 15px;
+  }
+
+  .goal-item {
+    padding: 12px 15px;
+  }
+}
+

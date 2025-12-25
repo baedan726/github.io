@@ -1,11 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>나의 첫 웹페이지</title>
+  <title>👋 자기소개 - 나의 학습 노트</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 인트로 페이지 전용 스타일 */
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .back-btn:hover {
+      background: rgba(99, 102, 241, 0.5);
+      transform: translateX(-5px);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .back-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .intro-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .profile-avatar {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+      border-radius: 50%;
+      margin: 0 auto 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .profile-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .profile-title {
+      color: #f59e0b;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .profile-bio {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .skills-section {
+      margin-top: 40px;
+    }
+
+    .skills-title {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .skill-tag {
+      padding: 10px 20px;
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .skill-tag.learning {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .contact-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-title {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .contact-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-link:hover {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .goals-section {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px;
+      margin-top: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .goals-title {
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .goal-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .goal-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(10px);
+    }
+
+    .goal-icon {
+      font-size: 1.5rem;
+    }
+
+    .goal-text {
+      color: #e2e8f0;
+      font-size: 1rem;
+    }
+
+    .intro-footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>안녕하세요!홍길동입니다.</h1>
+  <!-- 뒤로가기 버튼 -->
+  <a href="index.html" class="back-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    목록으로 돌아가기
+  </a>
+
+  <div class="intro-container">
+    <!-- 프로필 카드 -->
+    <div class="profile-card">
+      <div class="profile-avatar">👨‍💻</div>
+      <h1 class="profile-name">홍길동</h1>
+      <p class="profile-title">🌱 열심히 배우는 개발자 꿈나무</p>
+      
+      <p class="profile-bio">
+        안녕하세요! 웹 개발을 공부하고 있는 학생입니다.<br>
+        매일 조금씩 성장하며, 언젠가 멋진 개발자가 되는 것이 목표입니다.<br>
+        이 블로그는 제 학습 여정을 기록하는 공간입니다.
+      </p>
+
+      <!-- 기술 스택 -->
+      <div class="skills-section">
+        <h3 class="skills-title">📚 배우고 있는 것들</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag learning">JavaScript</span>
+          <span class="skill-tag learning">Git</span>
+          <span class="skill-tag learning">GitHub</span>
+        </div>
+      </div>
+
+      <!-- 연락처 -->
+      <div class="contact-section">
+        <h3 class="contact-title">📫 연락하기</h3>
+        <div class="contact-links">
+          <a href="#" class="contact-link" title="GitHub">💻</a>
+          <a href="#" class="contact-link" title="Email">✉️</a>
+          <a href="#" class="contact-link" title="Blog">📝</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 목표 섹션 -->
+    <div class="goals-section">
+      <h2 class="goals-title">🎯 나의 학습 목표</h2>
+      
+      <div class="goal-item">
+        <span class="goal-icon">✅</span>
+        <span class="goal-text">HTML 기본 문법 익히기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">🔄</span>
+        <span class="goal-text">CSS로 예쁜 웹페이지 만들기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">JavaScript로 동적인 기능 추가하기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">나만의 포트폴리오 웹사이트 완성하기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">React 또는 Vue.js 배우기</span>
+      </div>
+    </div>
+
+    <footer class="intro-footer">
+      <p>🚀 끊임없이 배우고 성장하는 중입니다!</p>
+    </footer>
+  </div>
 </body>
 </html>

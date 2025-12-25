@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👋 자기소개 - 나의 학습 노트</title>
+  <link rel="stylesheet" href="02_intro.css">
+</head>
+<body>
+  <!-- 뒤로가기 버튼 -->
+  <a href="index.html" class="back-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    목록으로 돌아가기
+  </a>
+
+  <div class="intro-container">
+    <!-- 프로필 카드 -->
+    <div class="profile-card">
+      <div class="profile-avatar">👨‍💻</div>
+      <h1 class="profile-name">홍길동</h1>
+      <p class="profile-title">🌱 열심히 배우는 개발자 꿈나무</p>
+      
+      <p class="profile-bio">
+        안녕하세요! 웹 개발을 공부하고 있는 학생입니다.<br>
+        매일 조금씩 성장하며, 언젠가 멋진 개발자가 되는 것이 목표입니다.<br>
+        이 블로그는 제 학습 여정을 기록하는 공간입니다.
+      </p>
+
+      <!-- 기술 스택 -->
+      <div class="skills-section">
+        <h3 class="skills-title">📚 배우고 있는 것들</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag learning">JavaScript</span>
+          <span class="skill-tag learning">Git</span>
+          <span class="skill-tag learning">GitHub</span>
+        </div>
+      </div>
+
+      <!-- 연락처 -->
+      <div class="contact-section">
+        <h3 class="contact-title">📫 연락하기</h3>
+        <div class="contact-links">
+          <a href="#" class="contact-link" title="GitHub">💻</a>
+          <a href="#" class="contact-link" title="Email">✉️</a>
+          <a href="#" class="contact-link" title="Blog">📝</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 목표 섹션 -->
+    <div class="goals-section">
+      <h2 class="goals-title">🎯 나의 학습 목표</h2>
+      
+      <div class="goal-item">
+        <span class="goal-icon">✅</span>
+        <span class="goal-text">HTML 기본 문법 익히기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">🔄</span>
+        <span class="goal-text">CSS로 예쁜 웹페이지 만들기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">JavaScript로 동적인 기능 추가하기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">나만의 포트폴리오 웹사이트 완성하기</span>
+      </div>
+      
+      <div class="goal-item">
+        <span class="goal-icon">⏳</span>
+        <span class="goal-text">React 또는 Vue.js 배우기</span>
+      </div>
+    </div>
+
+    <footer class="intro-footer">
+      <p>🚀 끊임없이 배우고 성장하는 중입니다!</p>
+      <p class="visit-count">방문자 수: <span id="visitCount">0</span></p>
+    </footer>
+  </div>
+
+  <script src="02_intro.js"></script>
+</body>
+</html>
+
